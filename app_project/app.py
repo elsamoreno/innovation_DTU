@@ -142,17 +142,20 @@ else:
 
 st.subheader("Data Quality Overview")
 
-reported_share = (df_all["Confidence"] == "High").mean() * 100
-st.write(f"**Reported data coverage:** {reported_share:.0f}%")
+if os.path.exists("supplier_data.csv"):
+    reported_share = (df_all["Confidence"] == "High").mean() * 100
+    st.write(f"**Reported data coverage:** {reported_share:.0f}%")
 
-st.subheader("Supplier Tiers Overview")
-tier_counts = df_all["Tier"].value_counts()
-st.bar_chart(tier_counts)
+    st.subheader("Supplier Tiers Overview")
+    tier_counts = df_all["Tier"].value_counts()
+    st.bar_chart(tier_counts)
 
-st.subheader("Industry Emission Comparison")
-industry_avg = df_all.groupby("Industry")["Emissions_tCO2"].mean()
-st.bar_chart(industry_avg)
-
+    st.subheader("Industry Emission Comparison")
+    industry_avg = df_all.groupby("Industry")["Emissions_tCO2"].mean()
+    st.bar_chart(industry_avg)
+else:
+    st.write("No supplier data submitted yet.")
+    
 st.markdown("<br>", unsafe_allow_html=True)
 
 
