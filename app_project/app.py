@@ -12,8 +12,11 @@ with col2:
 
 
 
+st.markdown(
+    "<h1 style='text-align: center;'>Supplier CO₂ Reporting Portal</h1>",
+    unsafe_allow_html=True
+)
 
-st.title("Supplier CO₂ Reporting Portal")
 
 st.info(
     "This portal helps suppliers improve sustainability performance, "
@@ -76,9 +79,11 @@ if submit:
         score = "C"
 
     st.subheader("Your Sustainability Rating")
-    st.write(f"**Tier:** {score}")
+    st.markdown(f"<span style='color:green; font-weight:bold;'>Tier {score}</span>", unsafe_allow_html=True)
 
-    st.subheader("How to improve your sustainability score")
+
+    st.info("📈 How to improve your score:")
+
 
     if confidence != "High":
         st.write("• Provide energy consumption data to improve data quality.")
@@ -92,6 +97,12 @@ if submit:
     st.subheader("Benchmark vs Industry")
     st.write(f"**Industry average:** {industry_avg} kgCO₂ / unit")
     st.write(f"**Your intensity:** {carbon_intensity:.2f} kgCO₂ / unit")
+
+    st.success(
+    "Improving your sustainability tier can increase your credibility with Novo Nordisk "
+    "and unlock potential preferred-supplier status."
+    )
+
 
 
 
@@ -124,6 +135,7 @@ if os.path.exists("supplier_data.csv"):
     st.bar_chart(
         df_all.groupby("Supplier")["Emissions_tCO2"].sum()
     )
+    st.line_chart(df_all.groupby("Supplier")["Emissions_tCO2"].sum())
 else:
     st.write("No supplier data submitted yet.")
 
@@ -132,6 +144,14 @@ st.subheader("Data Quality Overview")
 
 reported_share = (df_all["Confidence"] == "High").mean() * 100
 st.write(f"**Reported data coverage:** {reported_share:.0f}%")
+
+st.subheader("Supplier Tiers Overview")
+tier_counts = df_all["Tier"].value_counts()
+st.bar_chart(tier_counts)
+
+st.subheader("Industry Emission Comparison")
+industry_avg = df_all.groupby("Industry")["Emissions_tCO2"].mean()
+st.bar_chart(industry_avg)
 
 
 
@@ -145,5 +165,16 @@ if st.button("Clear all data"):
     if os.path.exists("supplier_data.csv"):
         os.remove("supplier_data.csv")
     st.experimental_rerun()
+
+
+st.markdown(
+    """
+    **Scalable system for thousands of suppliers:**  
+    - Automatically estimates missing emissions  
+    - Calculates tiers in real-time  
+    - Aggregates results for corporate dashboards  
+    - Can integrate with ERP and supply chain systems
+    """)
+
 
 
