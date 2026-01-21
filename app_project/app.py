@@ -135,7 +135,7 @@ if os.path.exists("supplier_data.csv"):
     st.bar_chart(
         df_all.groupby("Supplier")["Emissions_tCO2"].sum()
     )
-    st.line_chart(df_all.groupby("Supplier")["Emissions_tCO2"].sum())
+    
 else:
     st.write("No supplier data submitted yet.")
 
@@ -153,6 +153,7 @@ st.subheader("Industry Emission Comparison")
 industry_avg = df_all.groupby("Industry")["Emissions_tCO2"].mean()
 st.bar_chart(industry_avg)
 
+st.markdown("<br>", unsafe_allow_html=True)
 
 
 st.download_button(
@@ -166,6 +167,7 @@ if st.button("Clear all data"):
         os.remove("supplier_data.csv")
     st.experimental_rerun()
 
+st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown(
     """
