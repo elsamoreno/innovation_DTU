@@ -5,10 +5,10 @@ import os
 col1, col2 = st.columns([1, 1])  # two equal-width columns
 
 with col1:
-    st.image("logo.png", width=400)  # your logo
+    st.image("logo.png", width=200)  # your logo
 
 with col2:
-    st.image("novo_nordisk_logo.png", width=400)  # Novo Nordisk logo
+    st.image("novo_nordisk_logo.png", width=200)  # Novo Nordisk logo
 
 
 
