@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 import os
 
-st.write("Files in this directory:")
-st.write(os.listdir("."))
-
-st.image("novo_nordisk_logo.png", width=200)
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("novo_nordisk_logo.png", width=200)
 
 
 
