@@ -134,4 +134,9 @@ st.download_button(
     file_name="supplier_data.csv"
 )
 
+if st.button("Clear all data"):
+    if os.path.exists("supplier_data.csv"):
+        os.remove("supplier_data.csv")
+    st.experimental_rerun()
+
 
