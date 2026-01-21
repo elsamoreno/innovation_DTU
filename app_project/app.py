@@ -128,6 +128,13 @@ else:
     st.write("No supplier data submitted yet.")
 
 
+st.subheader("Data Quality Overview")
+
+reported_share = (df_all["Confidence"] == "High").mean() * 100
+st.write(f"**Reported data coverage:** {reported_share:.0f}%")
+
+
+
 st.download_button(
     "Download supplier data",
     data=open("supplier_data.csv", "rb"),
