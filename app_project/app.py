@@ -11,6 +11,12 @@ with col2:
 
 st.title("Supplier CO₂ Reporting Portal")
 
+st.info(
+    "This portal helps suppliers improve sustainability performance, "
+    "increase data quality, and strengthen their partnership with Novo Nordisk."
+)
+
+
 st.header("Supplier Information")
 
 supplier_name = st.text_input("Supplier name")
@@ -67,6 +73,23 @@ if submit:
 
     st.subheader("Your Sustainability Rating")
     st.write(f"**Tier:** {score}")
+
+    st.subheader("How to improve your sustainability score")
+
+    if confidence != "High":
+        st.write("• Provide energy consumption data to improve data quality.")
+    if carbon_intensity > 4:
+        st.write("• Reduce energy intensity or switch to renewable electricity.")
+    if score == "A":
+        st.write("• Maintain current performance to retain preferred supplier status.")
+
+    industry_avg = EMISSION_FACTORS[industry]
+
+    st.subheader("Benchmark vs Industry")
+    st.write(f"**Industry average:** {industry_avg} kgCO₂ / unit")
+    st.write(f"**Your intensity:** {carbon_intensity:.2f} kgCO₂ / unit")
+
+
 
     # Save data (THIS is where 'data' must be)
     data = {
