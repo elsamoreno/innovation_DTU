@@ -49,7 +49,7 @@ if submit:
     st.write(f"**Calculation method:** {method}")
     st.write(f"**Confidence level:** {confidence}")
 
-    # ✅ Sustainability score
+    # Sustainability score
     carbon_intensity = emissions / production_volume if production_volume > 0 else 0
 
     if confidence == "High" and carbon_intensity < 3:
@@ -62,7 +62,7 @@ if submit:
     st.subheader("Your Sustainability Rating")
     st.write(f"**Tier:** {score}")
 
-    # ✅ Save data (THIS is where 'data' must be)
+    # Save data (THIS is where 'data' must be)
     data = {
         "Supplier": supplier_name,
         "Industry": industry,
@@ -81,6 +81,24 @@ if submit:
     else:
         df.to_csv("supplier_data.csv", index=False)
 
+st.header("Novo Nordisk – Supply Chain Emissions Overview")
 
+if os.path.exists("supplier_data.csv"):
+    df_all = pd.read_csv("supplier_data.csv")
+
+    st.dataframe(df_all)
+
+    st.bar_chart(
+        df_all.groupby("Supplier")["Emissions_tCO2"].sum()
+    )
+else:
+    st.write("No supplier data submitted yet.")
+
+
+st.download_button(
+    "Download supplier data",
+    data=open("supplier_data.csv", "rb"),
+    file_name="supplier_data.csv"
+)
 
 
