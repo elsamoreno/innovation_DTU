@@ -153,17 +153,21 @@ if os.path.exists("supplier_data.csv"):
     st.subheader("Industry Emission Comparison")
     industry_avg = df_all.groupby("Industry")["Emissions_tCO2"].mean()
     st.bar_chart(industry_avg)
-else:
-    st.write("No supplier data submitted yet.")
-    
-st.markdown("<br>", unsafe_allow_html=True)
 
+    st.markdown("<br>", unsafe_allow_html=True)
 
-st.download_button(
+    st.download_button(
     "Download supplier data",
     data=open("supplier_data.csv", "rb"),
     file_name="supplier_data.csv"
-)
+    )
+
+else:
+    st.write("No supplier data submitted yet.")
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+
 
 if st.button("Reset Portal / Clear Data"):
     if os.path.exists("supplier_data.csv"):
