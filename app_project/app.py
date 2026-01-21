@@ -2,11 +2,14 @@ import streamlit as st
 import pandas as pd
 import os
 
-col1, col2, col3 = st.columns([1,2,1])
+col1, col2 = st.columns([1, 1])  # two equal-width columns
+
+with col1:
+    st.image("logo.png", width=400)  # your logo
+
 with col2:
-    st.image("logo.png", width=200)
-with col3:
-    st.image("novo_nordisk_logo.png", width=400)
+    st.image("novo_nordisk_logo.png", width=400)  # Novo Nordisk logo
+
 
 
 
