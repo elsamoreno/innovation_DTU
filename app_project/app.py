@@ -2,12 +2,10 @@ import streamlit as st
 import pandas as pd
 import os
 
-st.markdown(
-    "<div style='text-align: center;'>"
-    "<img src='novo_nordisk_logo.png' width='200'>"
-    "</div>",
-    unsafe_allow_html=True
-)
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("novo_nordisk_logo.png", width=200)
+
 
 
 st.title("Supplier CO₂ Reporting Portal")
