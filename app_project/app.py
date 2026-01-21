@@ -4,9 +4,9 @@ import os
 
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
-    st.image("novo_nordisk_logo.png", width=200)
+    st.image("logo.png", width=200)
 with col3:
-    st.image("logo.png", width=400)
+    st.image("novo_nordisk_logo.png", width=400)
 
 
 
