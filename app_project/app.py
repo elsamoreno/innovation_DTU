@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import os
 
+st.sidebar.image("novo_nordisk_logo.png", width=180)
+st.sidebar.markdown("### Supplier Sustainability Portal")
 
 st.title("Supplier CO₂ Reporting Portal")
 
