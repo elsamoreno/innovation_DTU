@@ -162,7 +162,7 @@ st.download_button(
     file_name="supplier_data.csv"
 )
 
-if st.button("Clear all data"):
+if st.button("Reset Portal / Clear Data"):
     if os.path.exists("supplier_data.csv"):
         os.remove("supplier_data.csv")
         st.success("Data cleared. The page will now refresh.")
