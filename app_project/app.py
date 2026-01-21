@@ -165,6 +165,7 @@ st.download_button(
 if st.button("Clear all data"):
     if os.path.exists("supplier_data.csv"):
         os.remove("supplier_data.csv")
+        st.success("Data cleared. The page will now refresh.")
     st.experimental_rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
